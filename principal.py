@@ -4,14 +4,14 @@ from datetime import datetime
 def menu(): 
     print("""
 ======= SISTEMA BANCÁRIO INTERMEDIÁRIO =======
-| [1] - Depositar                     |
-| [2] - Sacar                         |
-| [3] - Extrato                       |
-| [4] - Cadastrar Cliente             |
-| [5] - Visualizar Cliente            |
-| [6] - Criar Conta Corrente          |
-| [7] - Visualizar Conta Corrente     |
-| [8] - Sair                          |
+| [1] - Depositar                       |
+| [2] - Sacar                           |
+| [3] - Extrato                         |
+| [4] - Cadastrar Cliente               |
+| [5] - Visualizar Cliente              |
+| [6] - Criar Conta Corrente            |
+| [7] - Visualizar Conta Corrente       |
+| [8] - Sair                            |
 =======================================
 """)
 
@@ -24,7 +24,6 @@ LIMITE_SAQUES = 3
 NUMERO_AGENCIA = "0001"
 conta_corrente = 0
 
-#comentarioTeste
 
 listaCadastroCliente = []
 listaContaBancaria = []
@@ -86,6 +85,7 @@ def CadastroContaBancaria():
     global NUMERO_AGENCIA
     global conta_corrente
     
+    print("\n=================== CADASTRO DE CONTA CORRENTE =================\n")
     CPFCliente = input("Digite o CPF do cliente para criação de Conta: ")
 
     nome_Cliente = None
@@ -97,7 +97,9 @@ def CadastroContaBancaria():
             break
 
     if nome_Cliente is None:
-        print("Cliente não encontrado/ Cliente não cadastrado no sistema. Verifique o CPF informado.")
+        print("==============================================================")
+        print("\nCliente não encontrado/ Cliente não cadastrado no sistema. Verifique o CPF informado.\n")
+        print("==================================================================")
         return
     
     # Cria a conta bancária para o cliente
@@ -105,8 +107,10 @@ def CadastroContaBancaria():
     
     # Adiciona a nova conta à lista de contas bancárias
     listaContaBancaria.append(ListaConta)
-
-    print("\nConta criada com sucesso:")
+    print("\n")
+    print("===========================")
+    print("CONTA CRIADA COM SUCESSO!")
+    print("===========================")
     print(f"Número da Conta: {conta_corrente + 1}")
     print(f"Agência: {NUMERO_AGENCIA}")
     print(f"CPF: {CPFCliente}")
@@ -165,7 +169,7 @@ def sacar(valorSacar):
         print("\nVocê excedeu o limite diário de saques")
 
 
-def extrato():
+def extratos( saldo, / , *, extrato):
     print("\n-------EXTRATO------")
     print("\nO seu extrato")
     if not extrato:
@@ -192,7 +196,7 @@ while True:
         valorSacar=float(input("\nInforme o valor a ser sacado da conta: "))
         sacar(valorSacar)
     elif opcao == 3:
-        ...
+        extratos(saldo, extrato=extrato)
     elif opcao == 4:
         os.system("cls")
         cadastroCliente()
